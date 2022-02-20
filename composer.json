@@ -1,24 +1,25 @@
 {
-    "name": "muyue/api-demo",
-    "type": "project",
-    "autoload": {
-        "psr-4": {
-            "Muyue\\ApiDemo\\": "src/"
-        }
-    },
-    "authors": [
-        {
-            "name": "ziggle",
-            "email": "muyue1125@gmail.com"
-        }
-    ],
-    "require": {
-        "guzzlehttp/guzzle": "^7.4"
-    },
-    "repositories": {
-        "packagist": {
-            "type": "composer",
-            "url": "https://mirrors.aliyun.com/composer/"
-        }
+  "name": "muyue/api-demo",
+  "type": "project",
+  "autoload": {
+    "psr-4": {
+      "Muyue\\ApiDemo\\": "src/"
     }
+  },
+  "authors": [
+    {
+      "name": "ziggle",
+      "email": "muyue1125@gmail.com"
+    }
+  ],
+  "require": {
+    "guzzlehttp/guzzle": "^7.4",
+    "ext-json": "*"
+  },
+  "repositories": {
+    "packagist": {
+      "type": "composer",
+      "url": "https://mirrors.aliyun.com/composer/"
+    }
+  }
 }

@@ -9,3 +9,8 @@
 # 生成公钥
 
 `openssl rsa -in app_private_key.pem -pubout -out app_public_key.pem`
+
+
+
+
+
