@@ -1,6 +1,6 @@
 <?php
 
-namespace Muyue\ApiDemo\util;
+namespace demo\util;
 
 
 class SignUtil

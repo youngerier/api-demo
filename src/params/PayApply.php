@@ -1,8 +1,8 @@
 <?php
+namespace demo\params;
 
 class UploadDocumentRequest
 {
-    public $timestamp;
     public $user_no;
     public $txn_seqno;
     public $txn_time;

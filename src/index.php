@@ -1,5 +1,11 @@
 <?php
-require 'vendor/autoload.php';
+require '../vendor/autoload.php';
+
+use demo\params\UploadDocumentRequest;
+use function demo\util\check_sign;
+use function demo\util\httpPost;
+use function demo\util\sign_data;
+
 require 'params/PayApply.php';
 require 'util/Http.php';
 
@@ -8,11 +14,12 @@ function upload_file()
 {
     $e = new UploadDocumentRequest();
     $e->user_no = "1234";
-    $e->txn_seqno = date("'YmdHis");
+    $e->txn_seqno = date("YmdHis");
     $e->txn_time = date("YmdHis");
     $e->file_type = "png";
     $e->context_type = "UBO_IMAGE";
     $e->file_context = "bb";
+
     httpPost('https://test.lianlianpay-inc.com/merchant/v1/file/uploadfile', json_encode($e));
 }
 
@@ -37,7 +44,6 @@ function test_check_sign()
  * RSA 加密
  */
 
-//upload_file();
-test_sign();
-
-test_check_sign();
+upload_file();
+//test_sign();
+//test_check_sign();

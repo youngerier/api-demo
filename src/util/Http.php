@@ -1,8 +1,10 @@
 <?php
-require 'SignUtil.php';
+namespace demo\util;
 
 use GuzzleHttp\Client;
-use Muyue\ApiDemo\util\SignUtil;
+
+require 'SignUtil.php';
+
 
 $sp_no = '602202150000013432';
 $sign_type = 'RSA';
@@ -12,23 +14,25 @@ function httpPost($url, $content)
     global $sp_no;
     global $sign_type;
 
-    echo $url . PHP_EOL;
-    echo $content . PHP_EOL;
+    echo "req_url: " . $url . PHP_EOL;
+    echo "req_body: " . $content . PHP_EOL;
 
     $client = new Client();
+    $header = [
+        'timestamp' => date("YmdHis"),
+        'Signature-Data' => sign_data($content),
+        'Signature-Type' => $sign_type,
+        'sp_no' => $sp_no,
+        'Content-Type' => 'application/json;charset=UTF-8',
+    ];
     $response = $client->post($url,
         [
             'body' => $content,
-            'headers' => [
-                'timestamp' => date("'YmdHis"),
-                'Signature-Data' => sign_data($content),
-                'Signature-Type' => $sign_type,
-                'sp_no' => $sp_no,
-                'Content-Type' => 'application/json;charset=UTF-8',
-            ],
+            'headers' => $header,
             'verify' => false
         ]);
-    echo $response->getBody() . PHP_EOL;
+    echo "req_header: " . json_encode($header). PHP_EOL;
+    echo "resp_body: " . $response->getBody() . PHP_EOL;
 }
 
 
