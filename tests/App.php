@@ -32,6 +32,7 @@ class App extends TestCase
 
         $resp = httpPost('https://test.lianlianpay-inc.com/mpay-openapi/v1/ipay/cashout/payment/apply', json_encode($req));
         Logger()->info($resp);
-
+        $ret_code = (array)json_decode($resp,true)['ret_code'];
+        $this->assertSame(0, $ret_code);
     }
 }
