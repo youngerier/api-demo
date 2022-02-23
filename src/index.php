@@ -35,9 +35,8 @@ function test_upload_file()
 function test_sign()
 {
     $data = "xxxxx";
-    echo sign_data($data) . PHP_EOL;
-    $sign_data = 'VGbqtHw+mGsHpkuZni7pIXVdtNDkCbfb+yToSBFSsCWAXN58FEe2Gzq8RXRZfZgmCmqafaGxF3ca2S9BoFqll5+zVwvkLY821s0rDj1iri499yghwRyemwDBjr7M1388lF8HelaJgj1NCo1uhVhUuSd4LoRHVO3NjpyLMFWE/EM=';
-    echo check_sign($data, $sign_data) . PHP_EOL;
+    $sign_data = sign_data($data);
+    echo $sign_data . PHP_EOL;
 }
 
 
@@ -65,4 +64,4 @@ function test_enc()
 
 //test_upload_file();
 test_sign();
-test_enc();
+//test_enc();

@@ -42,9 +42,3 @@ function sign_data($content): string
     $sign_data = Sign::sign($md5Sign);
     return base64_encode($sign_data);
 }
-
-function check_sign($content, $signature)
-{
-    $md5Sign = md5($content);
-    return Sign::isValid($md5Sign, $signature);
-}

@@ -35,14 +35,14 @@ class Sign
     /**
      * 利用公钥和数字签名以及约定数据验证合法性
      * @param $data 待验证数据
-     * @param $pub_key 数字签名
+     * @param $signature 数字签名
      * @return -1:error验证错误 1:correct验证成功 0:incorrect验证失败
      */
-    public static function isValid($data = '', $pub_key = '')
+    public static function isValid($data = '', $signature = '')
     {
         global $public_key_path;
 
-        if (empty($data) || empty($pub_key)) {
+        if (empty($data) || empty($signature)) {
             return False;
         }
 
@@ -58,7 +58,7 @@ class Sign
             return False;
         }
 
-        $ret = openssl_verify($data, $pub_key, $pkeyid, OPENSSL_ALGO_MD5);
+        $ret = openssl_verify($data, $signature, $pkeyid, OPENSSL_ALGO_MD5);
         switch ($ret) {
             case -1:
                 echo "error";
