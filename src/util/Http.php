@@ -43,7 +43,8 @@ function sign_data($content): string
     return base64_encode($sign_data);
 }
 
-function check_sign($data, $signature)
+function check_sign($content, $signature)
 {
-    return Sign::isValid($data, $signature);
+    $md5Sign = md5($content);
+    return Sign::isValid($md5Sign, $signature);
 }
