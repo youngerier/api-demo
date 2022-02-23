@@ -3,7 +3,7 @@
 namespace demo\util;
 
 
-class SignUtil
+class Sign
 {
 
     /**
@@ -13,10 +13,11 @@ class SignUtil
      */
     public static function sign($data = '')
     {
+        global $private_key_path;
         if (empty($data)) {
             return False;
         }
-        $private_key = file_get_contents(dirname(__FILE__, 3) . '\doc\a_private.pem');
+        $private_key = self::_get_pem_content($private_key_path);
         if (empty($private_key)) {
             echo "Private Key error!";
             return False;
@@ -39,11 +40,13 @@ class SignUtil
      */
     public static function isValid($data = '', $pub_key = '')
     {
+        global $public_key_path;
+
         if (empty($data) || empty($pub_key)) {
             return False;
         }
 
-        $public_key = file_get_contents(dirname(__FILE__,3) . '\doc\a_public.pem');
+        $public_key = self::_get_pem_content($public_key_path);
         if (empty($public_key)) {
             echo "Public Key error!";
             return False;
@@ -65,6 +68,11 @@ class SignUtil
                 break;
         }
         return $ret;
+    }
+
+    private static function _get_pem_content($file_path)
+    {
+        return file_get_contents(dirname(__FILE__, 3) . $file_path);
     }
 
 }

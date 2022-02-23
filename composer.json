@@ -14,7 +14,9 @@
   ],
   "require": {
     "guzzlehttp/guzzle": "^7.4",
-    "ext-json": "*"
+    "ext-json": "*",
+    "ext-ctype": "*",
+    "ext-openssl": "*"
   },
   "repositories": {
     "packagist": {

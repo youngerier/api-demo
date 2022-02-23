@@ -3,7 +3,7 @@ namespace demo\util;
 
 use GuzzleHttp\Client;
 
-require 'SignUtil.php';
+require 'Sign.php';
 
 
 $sp_no = '602202150000013432';
@@ -39,11 +39,11 @@ function httpPost($url, $content)
 function sign_data($content): string
 {
     $md5Sign = md5($content);
-    $sign_data = SignUtil::sign($md5Sign);
+    $sign_data = Sign::sign($md5Sign);
     return base64_encode($sign_data);
 }
 
 function check_sign($data, $signature)
 {
-    return SignUtil::isValid($data, $signature);
+    return Sign::isValid($data, $signature);
 }

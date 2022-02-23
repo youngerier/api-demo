@@ -6,8 +6,10 @@ use function demo\util\check_sign;
 use function demo\util\httpPost;
 use function demo\util\sign_data;
 
+require 'cfg.php';
 require 'params/PayApply.php';
 require 'util/Http.php';
+require 'util/Rsa.php';
 
 
 function upload_file()
@@ -40,10 +42,25 @@ function test_check_sign()
     echo check_sign($data, $sign_data) . PHP_EOL;
 }
 
+function test_enc()
+{
+    global $private_key_path;
+    global $public_key_path;
+
+    $data = "xdaaa";
+    $rsa= new Rsa($private_key_path, $public_key_path);
+    $encode_data = $rsa->publicEncrypt($data);
+    echo $encode_data . PHP_EOL;
+    $source =$rsa->privateDecrypt($encode_data);
+    echo $source . PHP_EOL;
+}
+
+
 /**
  * RSA 加密
  */
 
-upload_file();
+//upload_file();
 //test_sign();
 //test_check_sign();
+test_enc();
