@@ -3,10 +3,10 @@ namespace ziggle\demo\params;
 
 class UploadDocumentRequest
 {
-    public $user_no;
-    public $txn_seqno;
-    public $txn_time;
-    public $file_type;
-    public $context_type;
-    public $file_context;
+    public string $user_no;
+    public string $txn_seqno;
+    public string $txn_time;
+    public string $file_type;
+    public string $context_type;
+    public string $file_context;
 }
