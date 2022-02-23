@@ -13,11 +13,10 @@ class Sign
      */
     public static function sign($data = '')
     {
-        global $private_key_path;
         if (empty($data)) {
             return False;
         }
-        $private_key = self::_get_pem_content($private_key_path);
+        $private_key = self::_get_pem_content(private_key_path);
         if (empty($private_key)) {
             echo "Private Key error!";
             return False;
@@ -40,13 +39,11 @@ class Sign
      */
     public static function isValid($data = '', $signature = '')
     {
-        global $public_key_path;
-
         if (empty($data) || empty($signature)) {
             return False;
         }
 
-        $public_key = self::_get_pem_content($public_key_path);
+        $public_key = self::_get_pem_content(public_key_path);
         if (empty($public_key)) {
             echo "Public Key error!";
             return False;
@@ -78,9 +75,7 @@ class Sign
 
     public static function enc(string $data): string
     {
-        global $lianlian_public_key_path;
-        global $private_key_path;
-        $rsa = new Rsa($private_key_path, $lianlian_public_key_path);
+        $rsa = new Rsa(private_key_path, lianlian_public_key_path);
         return $rsa->publicEncrypt($data);
     }
 }

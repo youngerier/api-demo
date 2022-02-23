@@ -36,9 +36,8 @@ function test_upload_file()
  */
 function test_payment()
 {
-    global $mch_id;
     $req = new PaymentApplyReqVo();
-    $req->mch_id = $mch_id;
+    $req->mch_id = MCH_ID;
     $req->txn_seqno = date("YmdHis");
     $req->txn_time = date("YmdHis");
     $req->order_amount = "0.1";
@@ -57,7 +56,6 @@ function test_payment()
     $resp = httpPost('https://test.lianlianpay-inc.com/mpay-openapi/v1/ipay/cashout/payment/apply', json_encode($req));
     Logger()->info($resp);
 }
-test_payment();
 /**
  * 付款查询
  * @return void
@@ -87,11 +85,9 @@ function test_sign()
  */
 function test_enc()
 {
-    global $private_key_path;
-    global $public_key_path;
 
     $data = "xdaaa";
-    $rsa= new Rsa($private_key_path, $public_key_path);
+    $rsa= new Rsa(private_key_path, public_key_path);
     $encode_data = $rsa->publicEncrypt($data);
     echo $encode_data . PHP_EOL;
     $source = $rsa->privateDecrypt($encode_data);
@@ -106,3 +102,4 @@ function test_enc()
 //test_upload_file();
 //test_sign();
 //test_enc();
+test_payment();

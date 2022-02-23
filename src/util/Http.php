@@ -8,18 +8,16 @@ require 'Sign.php';
 
 function httpPost($url, $content): StreamInterface
 {
-    global $sp_no;
-    global $sign_type;
 
-    echo "req_url: " . $url . PHP_EOL;
-    echo "req_body: " . $content . PHP_EOL;
+    Logger()->info("req_url: " . $url);
+    Logger()->info("req_body: " . $content);
 
     $client = new Client();
     $header = [
         'timestamp' => date("YmdHis"),
         'Signature-Data' => sign_data($content),
-        'Signature-Type' => $sign_type,
-        'sp_no' => $sp_no,
+        'Signature-Type' => sign_type,
+        'sp_no' => SP_NO,
         'Content-Type' => 'application/json;charset=UTF-8',
     ];
     $response = $client->post($url,
@@ -28,8 +26,8 @@ function httpPost($url, $content): StreamInterface
             'headers' => $header,
             'verify' => false
         ]);
-    echo "req_header: " . json_encode($header). PHP_EOL;
-    echo "resp_body: " . $response->getBody() . PHP_EOL;
+    Logger()->info("req_header: " . json_encode($header));
+    Logger()->info("resp_body: " . $response->getBody());
     return $response->getBody();
 }
 
