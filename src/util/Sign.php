@@ -1,6 +1,6 @@
 <?php
 
-namespace demo\util;
+namespace ziggle\demo\util;
 
 
 class Sign
@@ -75,4 +75,11 @@ class Sign
         return file_get_contents(dirname(__FILE__, 3) . $file_path);
     }
 
+
+    public static function enc(string $data): string
+    {
+        global $lianlian_public_key_path;
+        $rsa = new Rsa(null, $lianlian_public_key_path);
+        return $rsa->publicEncrypt($data);
+    }
 }

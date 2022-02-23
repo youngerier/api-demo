@@ -1,5 +1,5 @@
 <?php
-namespace demo\params;
+namespace ziggle\demo\params;
 
 class UploadDocumentRequest
 {

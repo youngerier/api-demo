@@ -1,4 +1,5 @@
 <?php
+namespace ziggle\demo\util;
 
 class Rsa
 {

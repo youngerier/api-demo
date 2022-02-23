@@ -1,15 +1,12 @@
 <?php
-namespace demo\util;
 
 use GuzzleHttp\Client;
+use Psr\Http\Message\StreamInterface;
+use ziggle\demo\util\Sign;
 
 require 'Sign.php';
 
-
-$sp_no = '602202150000013432';
-$sign_type = 'RSA';
-
-function httpPost($url, $content)
+function httpPost($url, $content): StreamInterface
 {
     global $sp_no;
     global $sign_type;
@@ -33,6 +30,7 @@ function httpPost($url, $content)
         ]);
     echo "req_header: " . json_encode($header). PHP_EOL;
     echo "resp_body: " . $response->getBody() . PHP_EOL;
+    return $response->getBody();
 }
 
 
