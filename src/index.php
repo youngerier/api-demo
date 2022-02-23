@@ -165,4 +165,4 @@ function test_enc()
 //test_sign();
 //test_enc();
 //test_payment();
-//test_wechat_ali_pay_apply();
+test_wechat_ali_pay_apply();

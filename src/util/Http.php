@@ -28,6 +28,18 @@ function httpPost($url, $content): StreamInterface
         ]);
     Logger()->info("req_header: " . json_encode($header));
     Logger()->info("resp_body: " . $response->getBody());
+
+    foreach ($response->getHeaders() as $name => $values) {
+        foreach ($values as $value) {
+            if ($name == 'Signature-Data') {
+                Logger()->info(sprintf('%s: %s', $name, $value));
+                // 验签
+                $stream = md5($response->getBody(),false);
+                $isValid = Sign::isValid($stream, $value);
+                Logger()->info(sprintf('验签结果: %s', $isValid));
+            }
+        }
+    }
     return $response->getBody();
 }
 

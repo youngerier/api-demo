@@ -43,7 +43,7 @@ class Sign
             return False;
         }
 
-        $public_key = self::_get_pem_content(public_key_path);
+        $public_key = self::_get_pem_content(lianlian_public_key_path);
         if (empty($public_key)) {
             echo "Public Key error!";
             return False;
@@ -55,13 +55,13 @@ class Sign
             return False;
         }
 
-        $ret = openssl_verify($data, $signature, $pkeyid, OPENSSL_ALGO_MD5);
+        $ret = openssl_verify($data, base64_decode($signature), $pkeyid, OPENSSL_ALGO_MD5);
         switch ($ret) {
             case -1:
-                echo "error";
+                Logger()->info("error");
                 break;
             default:
-                echo $ret == 1 ? "correct" : "incorrect";//0:incorrect
+                Logger()->info($ret == 1 ? "correct" : "incorrect");//0:incorrect
                 break;
         }
         return $ret;
