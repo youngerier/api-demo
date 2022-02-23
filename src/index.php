@@ -55,6 +55,7 @@ function test_payment()
     $req->brabank_name = "中国农业银行";
 
     $resp = httpPost('https://test.lianlianpay-inc.com/mpay-openapi/v1/ipay/cashout/payment/apply', json_encode($req));
+    Logger()->info($resp);
 }
 test_payment();
 /**

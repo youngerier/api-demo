@@ -79,7 +79,8 @@ class Sign
     public static function enc(string $data): string
     {
         global $lianlian_public_key_path;
-        $rsa = new Rsa(null, $lianlian_public_key_path);
+        global $private_key_path;
+        $rsa = new Rsa($private_key_path, $lianlian_public_key_path);
         return $rsa->publicEncrypt($data);
     }
 }
