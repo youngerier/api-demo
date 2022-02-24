@@ -15,6 +15,10 @@ const SP_NO = '602202150000013432';
 // 商户id
 const MCH_ID = '302201130000010180';
 
+const TEST_URL = "https://test.lianlianpay-inc.com/mpay-openapi";
+const TEST_QUERY_URL = "https://test.lianlianpay-inc.com/mpay-query-openapi";
+const FILE_URL = "https://test.lianlianpay-inc.com";
+
 // 签名类型
 const sign_type = 'RSA';
 
