@@ -1,3 +1,5 @@
+### 项目结构
+```
 api-demo
 ├─ .gitignore
 ├─ composer.json
@@ -28,3 +30,17 @@ api-demo
 │     └─ Sign.php
 └─ tests
    └─ App.php   -- 测试方法入口
+```
+
+### 安装composer
+
+
+### 依赖下载慢可以 composer 换源
+`composer config -g repo.packagist composer https://mirrors.aliyun.com/composer/`
+
+### composer 安装依赖
+`composer install`
+
+### 打开编辑器运行`App.php` 运行测试方法
+
+![img.png](doc/img.png)
